@@ -1,0 +1,5 @@
+Создать класс Photoupload
+методы:
+1) validate;
+2) upload
+3) addtodb;
