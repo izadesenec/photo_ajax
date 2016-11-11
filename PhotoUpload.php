@@ -14,14 +14,24 @@ class PhotoUpload {
         $file = $_FILES['photo'];
 
         if (empty($_FILES['photo'])) {
-            echo 'The file is absent';
+            $error=array();
+            $error[]=array(
+            'error'=> 'The file is absent',   
+            );
+            echo json_encode($error);
             return false;
         } else if (!in_array($file['type'], self::AVAILABLE_TYPE)) {
-           echo 'Invalid type of file';
+            $error=array();
+            $error[]=array(
+            'error'=> 'Invalid type of file',   
+            );
+            echo json_encode($error);
+           
             return false; 
         } else if ($file['size'] >= self::SIZEOFFILE) {
             echo 'File is too large. The size of your file should be less than 2 Mb';
         } else {
+            
             return true;
         }
     }
@@ -36,10 +46,10 @@ class PhotoUpload {
 		if (move_uploaded_file($file['tmp_name'], $this->src))
                 {
                     
-                    return $this;
+                    return true;
                 }else{
                     
-                    return $this;
+                    return false;
                 }
     }
     public function addToDb() {
