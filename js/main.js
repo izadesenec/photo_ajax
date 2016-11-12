@@ -10,10 +10,20 @@ $(document).ready(function () {
             success: function (data) {
                 $('#photo[type="file"]').val('');
                 $('.gallery').empty();
-                $.each(data, function(i,photo){
-                    $('.gallery').append('<img src="'+photo.src+'"/>');
+                $.each(data, function(id,src){
+                    $('.gallery').append('<img src="'+src.src+'"/>');
                 });                
             }
+            // error: function (data) {
+            //     var arr=[];
+            //     $.each(data,function(i,val){
+            //         var result="";
+            //         result+="error:";
+            //         result+=val;
+            //         arr.push(result);
+            //     });
+            //     alert(arr.join(", "));
+            // }
             
            
         });
